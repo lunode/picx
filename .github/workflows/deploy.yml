@@ -11,6 +11,7 @@ jobs:
     permissions:
       id-token: write  # Required for OIDC authentication
       contents: read
+      pages: write
     steps:
       - uses: actions/checkout@v2
         with: 
