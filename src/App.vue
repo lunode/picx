@@ -8,8 +8,8 @@
 import { onMounted, ref, getCurrentInstance, watch, computed } from 'vue'
 import { ElConfigProvider } from 'element-plus'
 import zhCN from 'element-plus/lib/locale/lang/zh-cn'
-import zhTW from 'element-plus/lib/locale/lang/zh-tw'
-import en from 'element-plus/lib/locale/lang/en'
+// import zhTW from 'element-plus/lib/locale/lang/zh-tw'
+// import en from 'element-plus/lib/locale/lang/en'
 import setThemeMode from '@/utils/set-theme-mode'
 import { useStore } from '@/stores'
 import { getLanguageByRegion, getRegionByIP, setWindowTitle, throttle } from '@/utils'
@@ -60,52 +60,52 @@ const setLanguage = (language: LanguageEnum) => {
   setWindowTitle(router.currentRoute.value.meta.title as string)
 }
 
-const setLanguageByIP = () => {
-  getRegionByIP().then((region) => {
-    const language = getLanguageByRegion(region)
+// const setLanguageByIP = () => {
+//   getRegionByIP().then((region) => {
+//     const language = getLanguageByRegion(region)
 
-    if (language !== userSettings.language) {
-      const confirmTxt = instance?.proxy?.$t(`confirm`, language)
-      const msgTxt = instance?.proxy?.$t(`toggle_language_msg`, language, {
-        region: instance?.proxy?.$t(`region.${region}`, language),
-        language: instance?.proxy?.$t(`language.${language}`, language)
-      })
+//     if (language !== userSettings.language) {
+//       const confirmTxt = instance?.proxy?.$t(`confirm`, language)
+//       const msgTxt = instance?.proxy?.$t(`toggle_language_msg`, language, {
+//         region: instance?.proxy?.$t(`region.${region}`, language),
+//         language: instance?.proxy?.$t(`language.${language}`, language)
+//       })
 
-      const msgInstance = ElMessage({
-        customClass: 'custom-message-container',
-        duration: 0,
-        offset: 20,
-        type: 'info',
-        message: `<div class="content-box language">
-                    <span class="msg">${msgTxt}</span>
-                    <spna class="btn-box">
-                      <span class="confirm btn">${confirmTxt}</span>
-                    </spna>
-                  </div>`,
-        dangerouslyUseHTMLString: true,
-        showClose: true
-      })
+//       const msgInstance = ElMessage({
+//         customClass: 'custom-message-container',
+//         duration: 0,
+//         offset: 20,
+//         type: 'info',
+//         message: `<div class="content-box language">
+//                     <span class="msg">${msgTxt}</span>
+//                     <spna class="btn-box">
+//                       <span class="confirm btn">${confirmTxt}</span>
+//                     </spna>
+//                   </div>`,
+//         dangerouslyUseHTMLString: true,
+//         showClose: true
+//       })
 
-      document
-        .querySelector('.custom-message-container .language .confirm')
-        ?.addEventListener('click', () => {
-          setLanguage(language)
-          store.dispatch('SET_USER_SETTINGS', {
-            language
-          })
-          msgInstance.close()
-        })
-    }
-  })
-}
+//       document
+//         .querySelector('.custom-message-container .language .confirm')
+//         ?.addEventListener('click', () => {
+//           setLanguage(language)
+//           store.dispatch('SET_USER_SETTINGS', {
+//             language
+//           })
+//           msgInstance.close()
+//         })
+//     }
+//   })
+// }
 
-const initSetLanguage = () => {
-  // 初始化设置
-  setLanguage(userSettings.language)
+// const initSetLanguage = () => {
+//   // 初始化设置
+//   setLanguage(userSettings.language)
 
-  // 根据 IP 自动设置
-  setLanguageByIP()
-}
+//   // 根据 IP 自动设置
+//   setLanguageByIP()
+// }
 
 const init = () => {
   elementPlusSizeHandle(window.innerWidth)
@@ -117,7 +117,7 @@ const init = () => {
   )
 
   setThemeMode()
-  initSetLanguage()
+  // initSetLanguage()
   initGithubAuthorize()
 }
 

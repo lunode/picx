@@ -2,12 +2,6 @@
   "name": "picx",
   "version": "2.5.0",
   "private": false,
-  "author": "XPoet <i@xpoet.cn>",
-  "license": "AGPL-3.0",
-  "bugs": {
-    "url": "https://github.com/XPoet/picx/issues"
-  },
-  "homepage": "https://github.com/XPoet/picx#readme",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
